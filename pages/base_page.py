@@ -14,9 +14,6 @@ from time import sleep
 from pages import ec
 
 
-# driver = webdriver.Chrome('/Users/dengjiajie/all_driver/chromedriver')
-# driver = webdriver.Chrome()
-# driver.get('https://www.baidu.com')
 
 URL = 'https://tianhangbox.com'
 TIME_OUT = 20
@@ -55,7 +52,7 @@ class BasePage():
         # 如果后台没有及时返回需要的提示文案，则继续等待
         if text != None:
             WebDriverWait(self.driver, timeout=TIME_OUT, poll_frequency=POLL_FREQUENCY).until(
-                text_not_to_be_empty_in_element(locator))
+                ec.text_not_to_be_empty_in_element(locator))
             # WebDriverWait(self.driver, timeout=TIME_OUT, poll_frequency=POLL_FREQUENCY).until(
             #     EC.text_to_be_present_in_element(locator, text))
         return self.driver.find_element(*locator)
