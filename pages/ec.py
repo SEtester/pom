@@ -1,25 +1,15 @@
-#encoding:utf-8
+# encoding:utf-8
+
 from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import StaleElementReferenceException
 from selenium.common.exceptions import WebDriverException
 
-# from selenium.webdriver.support.expected_conditions import *
-
-"""
- * Canned "Expected Conditions" which are generally useful within webdriver
- * tests.
-"""
-
-
 
 class text_not_to_be_empty_in_element(object):
-    """ An expectation for checking if the given text is present in the
-    specified element.
-    locator, text
-    """
-    def __init__(self, locator, text_=''):
+
+    def __init__(self, locator):
         self.locator = locator
-        self.text = text_
+        self.text = ''
 
     def __call__(self, driver):
         try:
@@ -27,6 +17,7 @@ class text_not_to_be_empty_in_element(object):
             return self.text != element_text
         except StaleElementReferenceException:
             return False
+
 
 def _find_element(driver, by):
     """Looks up an element. Logs and re-raises ``WebDriverException``

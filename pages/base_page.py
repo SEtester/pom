@@ -3,17 +3,16 @@
 import os
 import sys
 
-pages_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print(pages_path)
-sys.path.insert(0, pages_path)
+pom_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+print(pom_path)
+sys.path.insert(0, pom_path)
+
 from selenium import webdriver
 from selenium.webdriver.common.by import By
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.support.ui import WebDriverWait
 from time import sleep
 from pages import ec
-
-
 
 URL = 'https://tianhangbox.com'
 TIME_OUT = 20
@@ -49,7 +48,7 @@ class BasePage():
         locator = (By.CSS_SELECTOR, css)
         WebDriverWait(self.driver, timeout=TIME_OUT, poll_frequency=POLL_FREQUENCY).until(
             EC.visibility_of_element_located(locator))
-        # 如果后台没有及时返回需要的提示文案，则继续等待
+        # 如果后台没有及时返回提示文案，则继续等待
         if text != None:
             WebDriverWait(self.driver, timeout=TIME_OUT, poll_frequency=POLL_FREQUENCY).until(
                 ec.text_not_to_be_empty_in_element(locator))
@@ -61,19 +60,23 @@ class BasePage():
         locator = (By.XPATH, xpath)
         WebDriverWait(self.driver, timeout=TIME_OUT, poll_frequency=POLL_FREQUENCY).until(
             EC.visibility_of_element_located(locator))
-        # 如果后台没有及时返回需要的提示文案，则继续等待
+        # 如果后台没有及时返回提示文案，则继续等待
         if text != None:
             WebDriverWait(self.driver, timeout=TIME_OUT, poll_frequency=POLL_FREQUENCY).until(
-                EC.text_to_be_present_in_element(locator, text))
+                ec.text_not_to_be_empty_in_element(locator, text))
         return self.driver.find_element(*locator)
+
+    @property
+    def current_url(self):
+        return self.driver.current_url
 
 
 if __name__ == '__main__':
     driver = webdriver.Chrome()
     base_page = BasePage(driver, path='/view/login.shtml')
     # base_page = BasePage()
-    base_page.by_css('#username').send_keys('18286993500')
-    base_page.by_css('#password').send_keys('1234567')
+    base_page.by_css('#username').send_keys('xxxxxx')
+    base_page.by_css('#password').send_keys('xxxxxx')
     base_page.by_css('#verificationCode').send_keys('xxxxxx')
     base_page.by_css('#accountsLoginBtn').click()
     print(base_page.by_css('.layui-layer-content', text=1).text)
