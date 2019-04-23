@@ -9,13 +9,14 @@ sys.path.insert(0, pom_path)
 
 from selenium import webdriver
 from pages.login_page import LoginPage
+from common.driver import start_up_driver
 import unittest
 
 
 class TestLoginCase(unittest.TestCase):
 
     def setUp(self):
-        self.driver = webdriver.Chrome()
+        self.driver = start_up_driver()
 
     def tearDown(self):
         self.driver.quit()
@@ -24,7 +25,7 @@ class TestLoginCase(unittest.TestCase):
     def test_login_success(self):
         username = 'xxxxxx'
         password = 'xxxxxx'
-        login_page = LoginPage(self.driver, path='/view/login.shtml')
+        login_page = LoginPage(self.driver, path='/view/login.shtml    ')
         home_page = login_page.login(username, password)
         username_ = home_page.username_text()
         self.assertEqual('xxxxxx', username_)
@@ -37,7 +38,7 @@ class TestLoginCase(unittest.TestCase):
         home_page = login_page.login(username, password)
         error_msg = login_page.error_msg_text()
         print(error_msg)
-        self.assertEqual('该账号不存在', error_msg)
+        self.assertEqual('验证码错误', error_msg)
 
 
 if __name__ == '__main__':
