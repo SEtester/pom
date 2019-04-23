@@ -20,6 +20,7 @@ class TestLoginCase(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
+    @unittest.skip('无条件跳过')
     def test_login_success(self):
         username = 'xxxxxx'
         password = 'xxxxxx'
@@ -28,6 +29,15 @@ class TestLoginCase(unittest.TestCase):
         username_ = home_page.username_text()
         self.assertEqual('xxxxxx', username_)
         self.assertTrue('/index' in home_page.current_url)
+
+    def test_login_failed(self):
+        username = '18286993500'
+        password = 'xxxxxx'
+        login_page = LoginPage(self.driver, path='/view/login.shtml')
+        home_page = login_page.login(username, password)
+        error_msg = login_page.error_msg_text()
+        print(error_msg)
+        self.assertEqual('该账号不存在', error_msg)
 
 
 if __name__ == '__main__':

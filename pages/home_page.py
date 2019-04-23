@@ -12,3 +12,4 @@ class HomePage(BasePage):
 
     def username_text(self):
         return self.username.text
+

@@ -26,6 +26,10 @@ class LoginPage(BasePage):
     def error_msg(self):
         return self.by_css('.layui-layer-content', text=1)
 
+    def error_msg_text(self):
+        return self.error_msg.text
+
+
     def login(self, username, password, code='xxxxxxxxxxxx'):
         self.form_username.send_keys(username)
         self.form_password.send_keys(password)
