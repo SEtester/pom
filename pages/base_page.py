@@ -15,15 +15,14 @@ from selenium.common.exceptions import TimeoutException
 from time import sleep
 from pages import ec
 
-# URL = 'https://tianhangbox.com'
-URL = 'https://mail.163.com/'
+URL = 'https://tianhangbox.com'
+# URL = 'https://mail.163.com/'
 TIME_OUT = 10
 POLL_FREQUENCY = 0.5
 
 
 class BasePage():
 
-    # 传入Webdriver实例 ， uri
     def __init__(self, driver, path=None):
         """
         BasePage instance.
@@ -75,22 +74,8 @@ class BasePage():
             raise TimeoutException(msg)
 
         return self.driver.find_element(*locator)
-    #
-    # def switch_to_frame(self, choose_iframe=None, css=None, xpath=None):
-    #     if choose_iframe == 'default':
-    #         return self.driver.switch_to.default_content()
-    #     elif choose_iframe == 'parent':
-    #         return self.driver.switch_to.parent_frame()
-    #     elif css != None and xpath == None:
-    #         locator = (By.CSS_SELECTOR, css)
-    #     elif xpath != None and css == None:
-    #         locator = (By.XPATH, xpath)
-    #     else:
-    #         raise ValueError('参数错误，请传css定位或者xpath,需要指定用什么方式传')
-    #     WebDriverWait(self.driver, timeout=TIME_OUT, poll_frequency=POLL_FREQUENCY).until(
-    #         EC.frame_to_be_available_and_switch_to_it(locator))
 
-    def switch_to_frame(self,frame_reference):
+    def switch_to_frame(self, frame_reference):
         """
          Switches focus to the specified frame, by index, name, or webelement.
 
@@ -115,11 +100,24 @@ class BasePage():
 
     @property
     def current_url(self):
+        '''
+        Gets the URL of the current page
+        '''
         return self.driver.current_url
 
     @property
     def title(self):
+        '''
+        Returns the title of the current page.
+        '''
         return self.driver.title
+
+    @property
+    def name(self):
+        '''
+        Returns the name of the underlying browser for this instance.
+        '''
+        return self.driver.name
 
 
 if __name__ == '__main__':
