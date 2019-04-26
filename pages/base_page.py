@@ -15,8 +15,8 @@ from selenium.common.exceptions import TimeoutException
 from time import sleep
 from pages import ec
 
-URL = 'https://tianhangbox.com'
-# URL = 'https://mail.163.com/'
+# URL = 'https://tianhangbox.com'
+URL = 'https://mail.163.com/'
 TIME_OUT = 10
 POLL_FREQUENCY = 0.5
 
@@ -32,7 +32,7 @@ class BasePage():
         :return: None
         """
         self.driver = driver
-        self.driver = webdriver.Chrome()
+        # self.driver = webdriver.Chrome()
         self.load_web(path)
 
     # 导航到网页
@@ -119,6 +119,19 @@ class BasePage():
         '''
         return self.driver.name
 
+    @property
+    def current_window_handle(self):
+        """
+        Returns the handle of the current window.
+        """
+        return self.driver.current_window_handle
+
+    @property
+    def window_handles(self):
+        """
+        Returns the handles of all windows within the current session.
+        """
+        return self.driver.window_handles
 
 if __name__ == '__main__':
     driver = webdriver.Chrome()
@@ -133,6 +146,8 @@ if __name__ == '__main__':
     # base_page.by_css('#accountsLoginBtn').click()
     # print(base_page.by_css('.layui-layer-content', text=1).text)
     sleep(3)
+    print(base_page.current_window_handle)
+    print(base_page.window_handles)
     # print(base_page.by_css('.layui-layer-content').text)
     # print(base_page.title)
     driver.quit()
