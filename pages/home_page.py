@@ -3,7 +3,7 @@
 
 from .base_page import BasePage
 from .mailbox_home_page import MailboxHomePage
-
+from .business_mailbox_page import BsMailboxPage
 
 class HomePage(BasePage):
 
@@ -26,6 +26,15 @@ class HomePage(BasePage):
     @property
     def login_iframe(self):
         return self.by_css('.loginUrs iframe')
+
+    @property
+    def business_mailbox(self):
+        return self.by_css('.headerNav a:nth-child(1)')
+
+    def open_web_page_of_business_mailbox(self):
+        self.business_mailbox.click()
+        return BsMailboxPage(self.driver)
+
 
     def login(self, username, password):
         self.email_login.click()

@@ -133,6 +133,12 @@ class BasePage():
         """
         return self.driver.window_handles
 
+    def switch_to_window(self, window_name):
+        return self.driver.switch_to.window(window_name)
+
+    def assert_new_window_is_opened(self, current_handles):
+        return EC.new_window_is_opened(current_handles)(self.driver)
+
 
 if __name__ == '__main__':
     driver = webdriver.Chrome()
