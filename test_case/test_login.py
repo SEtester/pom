@@ -21,7 +21,7 @@ class TestLoginCase(unittest.TestCase):
 
     def test_login_success(self):
         username = 'aa460060639'
-        password = 'qwe2752773@ee'
+        password = 'xxxxxxxxxx'
         home_page = HomePage(self.driver, '/')
         email_home_page = home_page.login(username, password)
         login_account_text = email_home_page.get_email_account_text()
