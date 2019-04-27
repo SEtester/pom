@@ -36,9 +36,15 @@ class TestHomePageCase(unittest.TestCase):
         self.assertTrue('qiye' in business_mailbox_page.current_url)
         self.assertEqual('网易企业邮箱 - 企业邮箱信息化专业解决方案',business_mailbox_page.title)
 
-
+        print(home_page.current_url)
+        business_mailbox_page.close()
+        from time import sleep
+        sleep(5)
+        business_mailbox_page.switch_to_window(windows_handles[0])
+        print(home_page.current_url)
+        print(home_page.current_window_handle)
 
 
 
 if __name__ == '__main__':
-    unittest.main()
+    unittest.main(verbosity=2)

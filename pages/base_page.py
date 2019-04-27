@@ -139,6 +139,8 @@ class BasePage():
     def assert_new_window_is_opened(self, current_handles):
         return EC.new_window_is_opened(current_handles)(self.driver)
 
+    def close(self):
+        return self.driver.close()
 
 if __name__ == '__main__':
     driver = webdriver.Chrome()

@@ -4,6 +4,4 @@
 from .base_page import BasePage
 
 class BsMailboxPage(BasePage):
-
-    def text(self):
-        pass
+    pass
