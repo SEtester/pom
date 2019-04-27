@@ -4,11 +4,9 @@ import os
 import sys
 
 pom_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-print(pom_path)
 sys.path.insert(0, pom_path)
 
-from selenium import webdriver
-from pages.login_page import LoginPage
+from pages.home_page import HomePage
 from common.driver import start_up_driver
 import unittest
 
@@ -21,24 +19,13 @@ class TestLoginCase(unittest.TestCase):
     def tearDown(self):
         self.driver.quit()
 
-    @unittest.skip('无条件跳过')
     def test_login_success(self):
-        username = 'xxxxxx'
-        password = 'xxxxxx'
-        login_page = LoginPage(self.driver, path='/view/login.shtml    ')
-        home_page = login_page.login(username, password)
-        username_ = home_page.username_text()
-        self.assertEqual('xxxxxx', username_)
-        self.assertTrue('/index' in home_page.current_url)
-
-    def test_login_failed(self):
-        username = '18286993500'
-        password = 'xxxxxx'
-        login_page = LoginPage(self.driver, path='/view/login.shtml')
-        home_page = login_page.login(username, password)
-        error_msg = login_page.error_msg_text()
-        print(error_msg)
-        self.assertEqual('验证码错误', error_msg)
+        username = 'aa460060639'
+        password = 'qwe2752773@ee'
+        home_page = HomePage(self.driver, '/')
+        email_home_page = home_page.login(username, password)
+        login_account_text = email_home_page.get_email_account_text()
+        self.assertTrue(username in login_account_text)
 
 
 if __name__ == '__main__':

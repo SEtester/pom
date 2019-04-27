@@ -133,6 +133,7 @@ class BasePage():
         """
         return self.driver.window_handles
 
+
 if __name__ == '__main__':
     driver = webdriver.Chrome()
     base_page = BasePage(driver, path='/')
