@@ -2,7 +2,7 @@
 
 
 from .base_page import BasePage
-from .mailbox_home_page import MailboxHomePage
+from .emailbox_home_page import MailboxHomePage
 from .business_mailbox_page import BsMailboxPage
 
 
