@@ -20,7 +20,7 @@ class TestLoginCase(unittest.TestCase):
         self.driver.quit()
 
     def test_login_success(self):
-        username = 'aa460060639'
+        username = 'xxxxxxxxxx'
         password = 'xxxxxxxxxx'
         home_page = HomePage(self.driver, '/')
         email_home_page = home_page.login(username, password)
