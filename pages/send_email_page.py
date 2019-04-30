@@ -19,8 +19,13 @@ class SendEmailPage(BasePage):
     def email_context(self):
         return self.by_css('body.nui-scroll')
 
-    def enter_the_content_of_the_letter(self,context):
-        self.switch_to_frame(self.email_context_iframe)
-        # self.email_context.click()
-        self.email_context.send_keys(context)
+    def set_content(self, content):
+        js = "document.querySelector('.APP-editor-iframe').contentWindow.document.body.innerHTML = '%s'" % (content)
+        self.execute_script(js)
 
+    def enter_the_content_of_the_letter(self, context):
+        # self.switch_to_frame(self.email_context_iframe)
+        # self.email_context.click()
+        # self.email_context.send_keys(context)
+        # sleep(10)
+        self.set_content(context)

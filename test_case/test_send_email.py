@@ -20,14 +20,14 @@ class TestLoginCase(unittest.TestCase):
         self.driver.quit()
 
     def test_send_email_success(self):
-        username = 'xxxxxxx'
-        password = 'xxxxxxx'
+        username = 'xxxxxxxx'
+        password = 'xxxxxxxx'
         home_page = HomePage(self.driver, '/')
         email_home_page = home_page.login(username, password)
         login_account_text = email_home_page.get_email_account_text()
         self.assertTrue(username in login_account_text)
         send_email_page = email_home_page.load_web_page_of_write_letter()
-        send_email_page.enter_the_content_of_the_letter('test')
+        send_email_page.enter_the_content_of_the_letter('test11111')
         sleep(5)
 
 

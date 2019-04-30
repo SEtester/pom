@@ -142,6 +142,12 @@ class BasePage():
     def close(self):
         return self.driver.close()
 
+
+    def execute_script(self,js):
+        return self.driver.execute_script(js)
+
+
+
 if __name__ == '__main__':
     driver = webdriver.Chrome()
     base_page = BasePage(driver, path='/')
