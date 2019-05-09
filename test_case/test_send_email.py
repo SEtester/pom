@@ -27,8 +27,13 @@ class TestLoginCase(unittest.TestCase):
         login_account_text = email_home_page.get_email_account_text()
         self.assertTrue(username in login_account_text)
         send_email_page = email_home_page.load_web_page_of_write_letter()
-        send_email_page.enter_the_content_of_the_letter('test11111')
-        sleep(5)
+        recipient = 'xxxxxxxx'
+        email_subject = '测试163发送邮件'
+        context = '测试邮件发送内容输入'
+        send_email_page.enter_the_content_of_the_letter(recipient,email_subject,context)
+        send_email_success_text = send_email_page.get_send_email_success_text()
+        print(send_email_success_text)
+        sleep(999)
 
 
 if __name__ == '__main__':
