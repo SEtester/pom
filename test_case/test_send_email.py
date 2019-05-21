@@ -33,7 +33,7 @@ class TestLoginCase(unittest.TestCase):
         send_email_page.enter_the_content_of_the_letter(recipient,email_subject,context)
         send_email_success_text = send_email_page.get_send_email_success_text()
         print(send_email_success_text)
-        sleep(999)
+        input()
 
 
 if __name__ == '__main__':
